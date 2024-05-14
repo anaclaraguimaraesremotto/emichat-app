@@ -1,31 +1,53 @@
-import { Button, View } from "native-base";
-import { useState } from "react";
-import { TextInput } from "react-native";
+import React, { useState } from 'react';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
 
+interface LoginProps {
+  onSubmit: (email: string, password: string) => void;
+}
 
-const Login = () => {
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+const Login: React.FC<LoginProps> = ({ onSubmit }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
-        console.log('Email: ', email);
-        console.log('Senha: ', senha);
-    }
+  const handleLogin = () => {
+    onSubmit(email, password);
+  };
 
-
-return (
-    <View style={{backgroundColor: '#ff3300', flex:1, justifyContent: 'center', alignItems: 'center'}}>
-        <TextInput placeholder="email"
+  return (
+    <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
         value={email}
         onChangeText={setEmail}
-        autoCapitalize="none"
-        style={{ width: '80%', height: 40, borderColor: 'gray', borderWidth: 1, marginVertical: 10, paddingHorizontal: 10 }}/>
-        <TextInput placeholder="senha" 
-        value={senha} 
-        onChangeText={setSenha} secureTextEntry 
-        style={{ width: '80%', height: 40, borderColor: 'gray', borderWidth: 1, marginVertical: 10, paddingHorizontal: 10 }}/>
-        {/* <Button title="Login" onPress={handleLogin}/> */}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+      />
+      <Button title="Login" onPress={handleLogin} />
     </View>
-);}
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  input: {
+    width: '80%',
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+  },
+});
 
 export default Login;
