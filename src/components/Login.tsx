@@ -1,5 +1,5 @@
 import React,  { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import { StyleSheet, Text, Image, TextInput, TouchableOpacity, View} from 'react-native';
 
 interface LoginProps {
   onSubmit: (email: string, password: string) => void;
@@ -34,6 +34,7 @@ const Login: React.FC<LoginProps> = ({ onSubmit }) => {
      justifyContent: 'center', 
      flex: 1, 
      alignItems: 'center'}}>
+        <Image style={{width: '40%', height: '20%'}} source={require('../assets/emi-logo.png')} />
       <TextInput
       style={{width: '80%',
       marginBottom: 10,
