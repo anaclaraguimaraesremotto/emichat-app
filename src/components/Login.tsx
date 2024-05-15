@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import React,  { useState } from 'react';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 
 interface LoginProps {
   onSubmit: (email: string, password: string) => void;
 }
+
+interface ButtonProps {
+    onPress: () => void;
+    title: string;
+  }
+
+const Button: React.FC<ButtonProps> = ({ onPress, title }) => {
+    return (
+      <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
+        <Text style={styles.buttonText}>{title}</Text>
+      </TouchableOpacity>
+    );
+  };
 
 const Login: React.FC<LoginProps> = ({ onSubmit }) => {
   const [email, setEmail] = useState('');
@@ -14,40 +27,59 @@ const Login: React.FC<LoginProps> = ({ onSubmit }) => {
   };
 
   return (
-    <View style={styles.container}>
+    
+    <View style={{width: '100%',
+     height: '100%', 
+     backgroundColor: '#ff3300', 
+     justifyContent: 'center', 
+     flex: 1, 
+     alignItems: 'center'}}>
       <TextInput
-        style={styles.input}
+      style={{width: '80%',
+      marginBottom: 10,
+      paddingHorizontal: 10,
+      paddingVertical: 8,
+      borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 5
+      }}
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
-      />
+        />
       <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-      <Button title="Login" onPress={handleLogin} />
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  input: {
-    width: '80%',
+    style={{width: '80%',
     marginBottom: 10,
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 5,
-  },
-});
+    borderRadius: 5
+    }}
+        placeholder="Password"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+      />
+      {/* <Button title="Login" onPress={handleLogin} style={styles.button}/> */}
+      <Button title="Login" onPress={handleLogin} />
+    </View>
+  )
+}
+
+  const styles = StyleSheet.create({
+    buttonContainer: {
+      backgroundColor: '#ff5c33',
+      paddingVertical: 8,
+      paddingHorizontal: 20,
+      borderRadius: 10,
+    },
+    buttonText: {
+      color: '#ffffff',
+      fontSize: 16,
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+  });
 
 export default Login;
