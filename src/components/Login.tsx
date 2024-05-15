@@ -40,6 +40,7 @@ const Login: React.FC<LoginProps> = ({ onSubmit }) => {
       paddingHorizontal: 10,
       paddingVertical: 8,
       borderWidth: 1,
+      color: '#ffffff',
       borderColor: '#ccc',
       borderRadius: 5
       }}
@@ -53,6 +54,7 @@ const Login: React.FC<LoginProps> = ({ onSubmit }) => {
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderWidth: 1,
+    color: '#ffffff',
     borderColor: '#ccc',
     borderRadius: 5
     }}
